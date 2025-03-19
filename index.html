@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Basique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #chatbox {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #response {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chatbot Basique</h1>
+    <div id="chatbox">
+        <input type="text" id="question" placeholder="Pose une question">
+        <button onclick="getResponse()">Envoyer</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        function getResponse() {
+            const question = document.getElementById('question').value.trim().toLowerCase();
+            const responseDiv = document.getElementById('response');
+
+            if (question === "") {
+                responseDiv.innerHTML = "❌ Veuillez poser une question.";
+                return;
+            }
+
+            responseDiv.innerHTML = "⏳ Chargement...";
+
+            setTimeout(() => {
+                const responses = {
+                    "bonjour": "👋 Salut ! Comment vas-tu ?",
+                    "ça va": "😊 Moi ça va bien, merci !",
+                    "qui es-tu": "🤖 Je suis un chatbot !",
+                    "au revoir": "👋 À bientôt !"
+                };
+
+                responseDiv.innerHTML = responses[question] || "❓ Je ne comprends pas...";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
